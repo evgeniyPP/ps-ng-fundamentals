@@ -7,6 +7,7 @@ import { EventsListResolverService } from './events/shared/events-list-resolver.
 import { EventsListComponent } from './events/events-list.component';
 import { Error404Component } from './errors/error404.component';
 import { ProfileComponent } from './user/profile/profile.component';
+import { LoginComponent } from './user/login/login.component';
 
 export const mainRoutes: Routes = [
   {
@@ -29,5 +30,9 @@ export const mainRoutes: Routes = [
   {
     path: 'user/profile',
     component: ProfileComponent,
+  },
+  {
+    path: 'user/login',
+    component: LoginComponent,
   },
 ];
