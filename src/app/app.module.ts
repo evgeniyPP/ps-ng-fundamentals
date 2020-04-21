@@ -14,6 +14,7 @@ import { CreateEventComponent } from './events/create-event/create-event.compone
 import { Error404Component } from './errors/error404.component';
 import { FormatDatePipe } from './events/shared/format-date.pipe';
 import { CreateSessionComponent } from './events/event-details/create-session/create-session.component';
+import { SessionListComponent } from './events/event-details/session-list/session-list.component';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { CreateSessionComponent } from './events/event-details/create-session/cr
     Error404Component,
     FormatDatePipe,
     CreateSessionComponent,
+    SessionListComponent,
   ],
   bootstrap: [AppComponent],
 })
