@@ -12,10 +12,10 @@ import { EventDetailsComponent } from './events/event-details/event-details.comp
 import { mainRoutes } from './main.routes';
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { Error404Component } from './errors/error404.component';
-import { FormatDatePipe } from './events/shared/format-date.pipe';
 import { CreateSessionComponent } from './events/event-details/create-session/create-session.component';
 import { SessionListComponent } from './events/event-details/session-list/session-list.component';
 import { CollapsableWellComponent } from './common/collapsable-well/collapsable-well.component';
+import { DurationPipe } from './events/shared/duration.pipe';
 
 @NgModule({
   imports: [
@@ -33,10 +33,10 @@ import { CollapsableWellComponent } from './common/collapsable-well/collapsable-
     EventDetailsComponent,
     CreateEventComponent,
     Error404Component,
-    FormatDatePipe,
     CreateSessionComponent,
     SessionListComponent,
     CollapsableWellComponent,
+    DurationPipe,
   ],
   bootstrap: [AppComponent],
 })
