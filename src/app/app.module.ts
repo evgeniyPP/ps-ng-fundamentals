@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { UserModule } from './user/user.module';
 import { AppComponent } from './app.component';
@@ -11,9 +12,17 @@ import { EventDetailsComponent } from './events/event-details/event-details.comp
 import { mainRoutes } from './main.routes';
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { Error404Component } from './errors/error404.component';
+import { FormatDatePipe } from './events/shared/format-date.pipe';
+import { CreateSessionComponent } from './events/event-details/create-session/create-session.component';
 
 @NgModule({
-  imports: [BrowserModule, RouterModule.forRoot(mainRoutes), UserModule],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(mainRoutes),
+    FormsModule,
+    ReactiveFormsModule,
+    UserModule,
+  ],
   declarations: [
     AppComponent,
     EventsListComponent,
@@ -22,6 +31,8 @@ import { Error404Component } from './errors/error404.component';
     EventDetailsComponent,
     CreateEventComponent,
     Error404Component,
+    FormatDatePipe,
+    CreateSessionComponent,
   ],
   bootstrap: [AppComponent],
 })
