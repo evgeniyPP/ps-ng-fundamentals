@@ -15,6 +15,7 @@ import { Error404Component } from './errors/error404.component';
 import { FormatDatePipe } from './events/shared/format-date.pipe';
 import { CreateSessionComponent } from './events/event-details/create-session/create-session.component';
 import { SessionListComponent } from './events/event-details/session-list/session-list.component';
+import { CollapsableWellComponent } from './common/collapsable-well/collapsable-well.component';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { SessionListComponent } from './events/event-details/session-list/sessio
     FormatDatePipe,
     CreateSessionComponent,
     SessionListComponent,
+    CollapsableWellComponent,
   ],
   bootstrap: [AppComponent],
 })
