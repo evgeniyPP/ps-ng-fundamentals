@@ -23,3 +23,7 @@ export interface ISession {
   abstract: string;
   voters: string[];
 }
+
+export interface ISessionWithEventId extends ISession {
+  eventId: number;
+}

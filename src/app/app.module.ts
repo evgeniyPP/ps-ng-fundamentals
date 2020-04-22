@@ -17,8 +17,12 @@ import { SessionListComponent } from './events/event-details/session-list/sessio
 import { CollapsableWellComponent } from './common/collapsable-well/collapsable-well.component';
 import { DurationPipe } from './events/shared/duration.pipe';
 import { TOASTR_TOKEN, IToastr } from './common/toastr.service';
+import { JQ_TOKEN } from './common/jQuery.service';
+import { ModalComponent } from './common/modal/modal.component';
+import { ModalTriggerDirective } from './common/modal-trigger.directive';
 
 const toastr: IToastr = window['toastr'];
+const jQuery = window['$'];
 
 @NgModule({
   imports: [
@@ -40,8 +44,13 @@ const toastr: IToastr = window['toastr'];
     SessionListComponent,
     CollapsableWellComponent,
     DurationPipe,
+    ModalComponent,
+    ModalTriggerDirective,
   ],
   bootstrap: [AppComponent],
-  providers: [{ provide: TOASTR_TOKEN, useValue: toastr }],
+  providers: [
+    { provide: TOASTR_TOKEN, useValue: toastr },
+    { provide: JQ_TOKEN, useValue: jQuery },
+  ],
 })
 export class AppModule {}
