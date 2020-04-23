@@ -112,9 +112,21 @@
       />
     </div>
 
-    <div ngModelGroup="location">
-      <div class="form-group">
+    <div
+      ngModelGroup="location"
+      #locationGroup="ngModelGroup"
+      appLocationValidator
+    >
+      <div
+        class="form-group"
+        [ngClass]="{
+          error: locationGroup?.invalid && locationGroup?.touched
+        }"
+      >
         <label for="address">Event Location:</label>
+        <em *ngIf="locationGroup?.invalid && locationGroup?.touched"
+          >Enter a location and/or an online URL</em
+        >
         <input
           ngModel
           name="address"
@@ -124,7 +136,9 @@
           placeholder="Address of event..."
         />
       </div>
-      <div class="row">
+      <div class="row" [ngClass]="{
+        error: locationGroup?.invalid && locationGroup?.touched
+      }">
         <div class="col-md-6">
           <input
             ngModel
@@ -148,10 +162,15 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" [ngClass]="{
+      error: locationGroup?.invalid && locationGroup?.touched
+    }">
       <label for="onlineUrl">Online Url:</label>
       <input
         ngModel
+        (change)="
+          locationGroup.control.controls.address.updateValueAndValidity()
+        "
         name="onlineUrl"
         id="onlineUrl"
         type="text"
@@ -200,13 +219,14 @@
       />
     </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
     <button
-      type="button"
+      type="submit"
       [disabled]="newEventForm.invalid"
-      class="btn btn-default"
-      (click)="cancel()"
+      class="btn btn-primary"
     >
+      Save
+    </button>
+    <button type="button" class="btn btn-default" (click)="cancel()">
       Cancel
     </button>
   </form>

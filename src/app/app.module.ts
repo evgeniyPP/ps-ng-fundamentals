@@ -21,6 +21,7 @@ import { JQ_TOKEN } from './common/jQuery.service';
 import { ModalComponent } from './common/modal/modal.component';
 import { ModalTriggerDirective } from './common/modal-trigger.directive';
 import { UpvoteComponent } from './events/event-details/upvote/upvote.component';
+import { LocationValidatorDirective } from './events/create-event/location-validator.directive';
 
 const toastr: IToastr = window['toastr'];
 const jQuery = window['$'];
@@ -48,6 +49,7 @@ const jQuery = window['$'];
     ModalComponent,
     ModalTriggerDirective,
     UpvoteComponent,
+    LocationValidatorDirective,
   ],
   bootstrap: [AppComponent],
   providers: [
