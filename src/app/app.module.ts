@@ -20,6 +20,7 @@ import { TOASTR_TOKEN, IToastr } from './common/toastr.service';
 import { JQ_TOKEN } from './common/jQuery.service';
 import { ModalComponent } from './common/modal/modal.component';
 import { ModalTriggerDirective } from './common/modal-trigger.directive';
+import { UpvoteComponent } from './events/event-details/upvote/upvote.component';
 
 const toastr: IToastr = window['toastr'];
 const jQuery = window['$'];
@@ -46,6 +47,7 @@ const jQuery = window['$'];
     DurationPipe,
     ModalComponent,
     ModalTriggerDirective,
+    UpvoteComponent,
   ],
   bootstrap: [AppComponent],
   providers: [

@@ -1,6 +1,9 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { TOASTR_TOKEN, IToastr } from './../../../common/toastr.service';
+import { Component, Input, OnChanges, Inject } from '@angular/core';
 
-import { ISession } from './../../shared/event.model';
+import { AuthService } from '../../../user/auth.service';
+import { ISession } from '../../shared/event.model';
+import { VoterService } from '../voter.service';
 
 @Component({
   selector: 'app-session-list',
@@ -13,6 +16,12 @@ export class SessionListComponent implements OnChanges {
   @Input() filterBy: string;
   filteredSessions: ISession[];
 
+  constructor(
+    public auth: AuthService,
+    private voterService: VoterService,
+    @Inject(TOASTR_TOKEN) private toastr: IToastr
+  ) {}
+
   ngOnChanges() {
     if (!this.sessions) {
       return;
@@ -22,6 +31,34 @@ export class SessionListComponent implements OnChanges {
     this.sortBy === 'name'
       ? this.filteredSessions.sort(sortByNameAsc)
       : this.filteredSessions.sort(sortByVotesDesc);
+  }
+
+  toggleVote(session: ISession) {
+    if (!this.auth.isAuth()) {
+      this.toastr.warning('You must be authenticated to vote');
+      return;
+    }
+
+    if (this.userHasVoted(session)) {
+      this.voterService.deleteVoter(session, this.auth.currentUser.userName);
+    } else {
+      this.voterService.addVoter(session, this.auth.currentUser.userName);
+    }
+
+    if (this.sortBy === 'votes') {
+      this.filteredSessions.sort(sortByVotesDesc);
+    }
+  }
+
+  userHasVoted(session: ISession): boolean {
+    if (!this.auth.isAuth()) {
+      return false;
+    }
+
+    return this.voterService.userHasVoted(
+      session,
+      this.auth.currentUser.userName
+    );
   }
 
   filterSessions(filter) {
