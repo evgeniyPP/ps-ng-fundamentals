@@ -16,9 +16,10 @@ export class CreateEventComponent implements OnInit {
   ngOnInit() {}
 
   saveEvent(values: any) {
-    this.eventService.saveEvent(values);
-    this.isDirty = false;
-    this.router.navigate(['/events']);
+    this.eventService.saveEvent(values).subscribe(() => {
+      this.isDirty = false;
+      this.router.navigate(['/events']);
+    });
   }
 
   cancel() {

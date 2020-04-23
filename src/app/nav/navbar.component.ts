@@ -2,7 +2,7 @@ import { EventService } from './../events/shared/event.service';
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from './../user/auth.service';
-import { ISession, ISessionWithEventId } from './../events/shared/event.model';
+import { ISessionWithEventId } from './../events/shared/event.model';
 
 @Component({
   selector: 'app-navbar',

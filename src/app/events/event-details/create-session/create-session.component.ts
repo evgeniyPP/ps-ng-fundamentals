@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { ISession } from './../../shared/event.model';
@@ -19,8 +18,6 @@ export class CreateSessionComponent implements OnInit {
   duration: FormControl;
   level: FormControl;
   abstract: FormControl;
-
-  constructor(private router: Router) {}
 
   ngOnInit() {
     this.name = new FormControl('', Validators.required);

@@ -11,6 +11,7 @@ import { VoterService } from '../voter.service';
   styleUrls: ['./session-list.component.css'],
 })
 export class SessionListComponent implements OnChanges {
+  @Input() eventId: number;
   @Input() sessions: ISession[];
   @Input() sortBy: 'votes' | 'name';
   @Input() filterBy: string;
@@ -40,9 +41,17 @@ export class SessionListComponent implements OnChanges {
     }
 
     if (this.userHasVoted(session)) {
-      this.voterService.deleteVoter(session, this.auth.currentUser.userName);
+      this.voterService.deleteVoter(
+        this.eventId,
+        session,
+        this.auth.currentUser.userName
+      );
     } else {
-      this.voterService.addVoter(session, this.auth.currentUser.userName);
+      this.voterService.addVoter(
+        this.eventId,
+        session,
+        this.auth.currentUser.userName
+      );
     }
 
     if (this.sortBy === 'votes') {

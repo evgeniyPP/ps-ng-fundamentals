@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { UserModule } from './user/user.module';
 import { AppComponent } from './app.component';
@@ -33,6 +34,7 @@ const jQuery = window['$'];
     FormsModule,
     ReactiveFormsModule,
     UserModule,
+    HttpClientModule,
   ],
   declarations: [
     AppComponent,
