@@ -13,19 +13,19 @@ export class EventService {
 
   getEvents(): Observable<IEvent[]> {
     return this.http
-      .get<IEvent[]>('/api/events')
+      .get<IEvent[]>('https://ngf-server.herokuapp.com/api/events')
       .pipe(catchError(this.handleError<IEvent[]>('getEvents', [])));
   }
 
   getEvent(id: number): Observable<IEvent> {
     return this.http
-      .get<IEvent>(`/api/events/${id}`)
+      .get<IEvent>(`https://ngf-server.herokuapp.com/api/events/${id}`)
       .pipe(catchError(this.handleError<IEvent>('getEvent')));
   }
 
   saveEvent(event: IEvent): Observable<IEvent> {
     return this.http
-      .post<IEvent>('/api/events', event, {
+      .post<IEvent>('https://ngf-server.herokuapp.com/api/events', event, {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       })
       .pipe(catchError(this.handleError<IEvent>('saveEvent')));
@@ -33,13 +33,15 @@ export class EventService {
 
   searchSessions(searchTerm: string): Observable<ISession[]> {
     return this.http
-      .get<ISession[]>(`/api/sessions/search?search=${searchTerm}`)
+      .get<ISession[]>(
+        `https://ngf-server.herokuapp.com/api/sessions/search?search=${searchTerm}`
+      )
       .pipe(catchError(this.handleError<ISession[]>('searchSessions')));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error);
+      console.error(operation, error);
       return of(result as T);
     };
   }

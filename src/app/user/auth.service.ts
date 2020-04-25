@@ -16,7 +16,7 @@ export class AuthService {
   loginUser(username: string, password: string) {
     return this.http
       .post(
-        '/api/login',
+        'https://ngf-server.herokuapp.com/api/login',
         { username, password },
         {
           headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -39,13 +39,15 @@ export class AuthService {
   }
 
   checkAuthStatus() {
-    return this.http.get('/api/currentIdentity').pipe(
-      tap((data) => {
-        if (data) {
-          this.currentUser = <IUser>data;
-        }
-      })
-    );
+    return this.http
+      .get('https://ngf-server.herokuapp.com/api/currentIdentity')
+      .pipe(
+        tap((data) => {
+          if (data) {
+            this.currentUser = <IUser>data;
+          }
+        })
+      );
   }
 
   updateCurrentUser(firstName: string, lastName: string) {
@@ -53,7 +55,7 @@ export class AuthService {
     this.currentUser.lastName = lastName;
 
     return this.http.put(
-      `/api/users/${this.currentUser.id}`,
+      `https://ngf-server.herokuapp.com/api/users/${this.currentUser.id}`,
       this.currentUser,
       {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -65,7 +67,7 @@ export class AuthService {
     this.currentUser = undefined;
 
     return this.http.post(
-      `/api/logout`,
+      `https://ngf-server.herokuapp.com/api/logout`,
       {},
       {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

@@ -16,7 +16,7 @@ export class VoterService {
 
     this.http
       .post(
-        `/api/events/${eventId}/sessions/${session.id}/voters/${userName}`,
+        `https://ngf-server.herokuapp.com/api/events/${eventId}/sessions/${session.id}/voters/${userName}`,
         {},
         {
           headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -31,7 +31,7 @@ export class VoterService {
 
     this.http
       .delete(
-        `/api/events/${eventId}/sessions/${session.id}/voters/${userName}`
+        `https://ngf-server.herokuapp.com/api/events/${eventId}/sessions/${session.id}/voters/${userName}`
       )
       .pipe(catchError(this.handleError('deleteVoter')))
       .subscribe();
@@ -43,7 +43,7 @@ export class VoterService {
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error);
+      console.error(operation, error);
       return of(result as T);
     };
   }
